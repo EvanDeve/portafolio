@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evan Marín | IA & Automatización · UX/UI</title>
+  
+  <!-- Tabler Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+    :root {
+      /* Palette */
+      --bg-color: #f1efe7;
+      --text-primary: #2b2b2b;
+      --accent-color: #0292b7;
+      --accent-hover: #027a99;
+      --accent-soft: rgba(2, 146, 183, 0.08);
+      
+      --surface-white: #ffffff;
+      --surface-gray: #e9e6dc;
+      --border-color: #dcdad2;
+      --border-strong: #c4c1b8;
+      
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+      
+      --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* TYPOGRAPHY */
+    h1, h2, h3, h4 {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-color);
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    /* HEADER / NAVBAR */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(241, 239, 231, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition-smooth);
+    }
+    
+    header.scrolled {
+      padding: 12px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.02);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .logo span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-color);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: var(--transition-smooth);
+    }
+
+    .nav-link:hover {
+      opacity: 1;
+      color: var(--accent-color);
+    }
+
+    .nav-btn {
+      background: var(--text-primary);
+      color: var(--bg-color);
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+
+    .nav-btn:hover {
+      background: var(--accent-color);
+      color: white;
+    }
+
+    /* SECTION LAYOUTS */
+    section {
+      padding: 120px 24px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .bg-white {
+      background-color: var(--surface-white);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero-section {
+      padding-top: 100px;
+      padding-bottom: 40px;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 60px;
+      align-items: center;
+      text-align: left;
+      width: 100%;
+    }
+
+    .hero-content {
+      max-width: 680px;
+    }
+
+    .hero-name {
+      font-size: 64px;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .hero-typewriter-wrap {
+      height: 60px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .hero-typewriter {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--accent-color);
+      letter-spacing: -0.03em;
+    }
+
+    .hero-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 40px;
+      background: var(--accent-color);
+      margin-left: 8px;
+      animation: blink 0.9s step-end infinite;
+    }
+
+    .hero-bio {
+      font-size: 18px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      opacity: 0.9;
+    }
+
+    .hero-bio strong {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-img {
+      max-width: 100%;
+      height: auto;
+      max-height: 600px;
+      object-fit: contain;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+    }
+
+    .btn-main {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+    }
+
+    .btn-main:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(2, 146, 183, 0.2);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1.5px solid var(--border-strong);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--text-primary);
+      background: rgba(0,0,0,0.02);
+      transform: translateY(-2px);
+    }
+
+
+
+    /* STATS ROW */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 80px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 48px;
+    }
+
+    .stat-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stat-num {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    /* ABOUT SECTION */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 60px;
+    }
+
+    .about-sticky {
+      position: sticky;
+      top: 120px;
+      height: fit-content;
+    }
+
+    .section-title {
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .about-content {
+      font-size: 16px;
+      color: var(--text-secondary);
+    }
+
+    .about-text {
+      margin-bottom: 24px;
+      line-height: 1.75;
+    }
+
+    .about-text strong {
+      color: var(--text-primary);
+    }
+
+    .tag-container {
+      margin-top: 40px;
+    }
+
+    .tag-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 100px;
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      background: var(--bg-color);
+      transition: var(--transition-smooth);
+    }
+
+    .tag:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+      background: var(--accent-soft);
+    }
+
+    /* PROJECTS SECTION */
+    .projects-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+    }
+    
+    .projects-header-left {
+      max-width: 600px;
+    }
+
+    /* Featured Project Card */
+    .project-featured {
+      background: var(--surface-white);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 48px;
+      margin-bottom: 32px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.01);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+      transition: var(--transition-smooth);
+    }
+
+    .project-featured:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+      border-color: var(--border-strong);
+    }
+
+    .project-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: var(--accent-soft);
+      color: var(--accent-color);
+      margin-bottom: 24px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-color);
+      animation: pulse-dot 1.5s ease-in-out infinite;
+    }
+
+    .project-title {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .project-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+
+    .project-metrics {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 32px;
+      border-top: 1px solid var(--border-color);
+      padding-top: 24px;
+    }
+
+    .project-metric {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pm-num {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--accent-color);
+    }
+
+    .pm-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Mockup design for project inside card */
+    .project-showcase-visual {
+      background: var(--bg-color);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid var(--border-color);
+      height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .showcase-icon {
+      font-size: 48px;
+      color: var(--accent-color);
+      margin-bottom: 12px;
+    }
+
+    .showcase-text {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text-primary);
+    }
+
+    .project-featured-icon {
+      margin-bottom: 20px;
+    }
+
+    .project-featured-logo {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      border-radius: 14px;
+    }
+
+    .showcase-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      gap: 4px;
+    }
+
+    .project-logo-img {
+      max-width: 160px;
+      max-height: 160px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 20px;
+    }
+
+    .pc-icon-logo {
+      background: transparent;
+      border: none;
+      padding: 0;
+      width: auto;
+      height: auto;
+    }
+
+    .pc-logo-img {
+      width: 44px;
+      height: 44px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .tech-stack {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tech-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 100px;
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+    }
+
+    /* Project Grid for others */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--surface-white);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      transition: var(--transition-smooth);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+      border-color: var(--accent-color);
+    }
+
+    .pc-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      background: var(--accent-soft);
+      color: var(--accent-color);
+      margin-bottom: 24px;
+    }
+
+    .pc-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .pc-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+
+    .pc-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 100px;
+      color: var(--text-primary);
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      align-self: flex-start;
+    }
+
+    /* ABOUT CLEAN LAYOUT */
+    .about-clean-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-clean-left {
+    }
+
+    .about-clean-right .about-headline {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .about-clean-right .about-headline em {
+      font-style: normal;
+      color: var(--accent-color);
+    }
+
+    .about-clean-right .about-text {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .about-clean-right .about-text strong {
+      color: var(--text-primary);
+    }
+
+
+    /* SKILLS REDESIGN */
+    .skills-header {
+      max-width: 640px;
+      margin-bottom: 64px;
+    }
+
+    .skills-subtitle {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-top: 12px;
+      line-height: 1.65;
+    }
+
+    .skills-categories {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .skill-category {
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 36px;
+    }
+
+    .skill-category-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .skill-category-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(2, 146, 183, 0.1);
+      color: var(--accent-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .skill-category-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .skill-pills-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .skill-pill {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--surface-white);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      transition: var(--transition-smooth);
+    }
+
+    .skill-pill:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+      transform: translateX(4px);
+    }
+
+    .skill-pill i {
+      font-size: 18px;
+      color: var(--accent-color);
+      flex-shrink: 0;
+    }
+
+
+    /* CONTACT / FOOTER SECTION */
+    .contact-section {
+      background: var(--text-primary); /* Charcoal background for contrast block */
+      color: var(--bg-color);
+      padding: 120px 24px;
+      border-top: none;
+    }
+
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-title {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--surface-white);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-sub {
+      font-size: 18px;
+      color: var(--border-strong);
+      margin-bottom: 48px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 28px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+
+    .contact-link-primary {
+      background: var(--accent-color);
+      color: white;
+    }
+
+    .contact-link-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .contact-link-secondary {
+      background: rgba(255,255,255,0.05);
+      color: var(--surface-white);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .contact-link-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 80px;
+      padding-top: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--border-strong);
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+      
+      .hero-content {
+        margin: 0 auto;
+      }
+
+      .hero-typewriter-wrap {
+        justify-content: center;
+      }
+
+      .hero-ctas {
+        justify-content: center;
+      }
+
+      .hero-typewriter-wrap {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        max-width: 480px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .hero-img {
+        max-height: 440px;
+      }
+
+      .skills-categories {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+
+      .project-featured {
+        grid-template-columns: 1fr;
+        padding: 32px;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 60px 16px;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 16px;
+      }
+
+      nav {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .hero-name {
+        font-size: 40px;
+      }
+
+      .hero-typewriter {
+        font-size: 30px;
+      }
+
+      .about-headline {
+        font-size: 22px;
+      }
+
+      .about-clean-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .about-clean-left {
+        position: static;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-categories {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .skill-category {
+        padding: 24px;
+      }
+
+      .contact-title {
+        font-size: 32px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-name {
+        font-size: 32px;
+      }
+
+      .hero-typewriter {
+        font-size: 24px;
+      }
+
+      .hero-typewriter-wrap {
+        height: 48px;
+        margin-bottom: 16px;
+      }
+
+      .hero-bio {
+        font-size: 15px;
+        margin-bottom: 28px;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+      }
+
+      .project-featured {
+        padding: 24px 16px;
+      }
+
+      .project-title {
+        font-size: 24px;
+      }
+
+      .project-metrics {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .contact-links {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .contact-link {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* FLOATING ACTION BUTTONS (FAB) */
+    .fab-container {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 2000;
+    }
+
+    .fab-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      transition: var(--transition-smooth);
+      font-size: 24px;
+    }
+
+    .fab-btn:hover {
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .fab-whatsapp {
+      background-color: #25D366;
+    }
+
+    .fab-instagram {
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    }
+
+    @media (max-width: 768px) {
+      .fab-container {
+        bottom: 20px;
+        right: 20px;
+        gap: 8px;
+      }
+      .fab-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="header">
+    <div class="nav-container">
+      <a href="#" class="logo">Evan Marín<span></span></a>
+      <nav>
+        <a href="#sobre-mi" class="nav-link">Sobre mí</a>
+        <a href="#proyectos" class="nav-link">Proyectos</a>
+        <a href="#habilidades" class="nav-link">Habilidades</a>
+        <a href="#contacto" class="nav-btn">Hablemos</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <span class="eyebrow">Costa Rica · IA & Automatización · UX/UI</span>
+          <h1 class="hero-name">Evan Marín</h1>
+          <div class="hero-typewriter-wrap">
+            <span class="hero-typewriter" id="typewriter"></span><span class="hero-cursor"></span>
+          </div>
+          <p class="hero-bio">
+            Automatizo negocios con <strong>IA y WhatsApp</strong>, diseño productos digitales con intención, y construyo <strong>@foodsycr</strong> en público — la primera plataforma de reservas con IA para restaurantes en Costa Rica.
+          </p>
+          <div class="hero-ctas">
+            <a href="#proyectos" class="btn btn-main">Ver proyectos <i class="ti ti-arrow-right"></i></a>
+            <a href="#contacto" class="btn btn-ghost">Hablemos</a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img src="img/me_cruzado.png" alt="Evan Marín" class="hero-img">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="sobre-mi" class="bg-white">
+    <div class="container">
+      <div class="about-clean-grid">
+
+         <div class="about-clean-left">
+          <span class="eyebrow">Trayectoria</span>
+          <h2 class="section-title">Sobre mí</h2>
+        </div>
+
+        <div class="about-clean-right">
+          <p class="about-headline">
+            Mi primera experiencia fue automatizando un proceso para un <em>Real Estate en México</em> y de ahí nunca paré.
+          </p>
+          <p class="about-text">
+            Hoy combino <strong>diseño UX/UI</strong>, <strong>agentes de IA</strong> y <strong>automatizaciones</strong> para resolver problemas reales de negocios en Costa Rica — sin tecnicismos, con resultados medibles.
+          </p>
+          <p class="about-text">
+            Construyo <strong>Foodsy</strong> en público: un agente de WhatsApp que maneja reservaciones para restaurantes con IA. Mi forma de trabajar es simple: entender el problema antes de proponer la solución.
+          </p>
+          <div class="tags" style="margin-top: 32px;">
+            <span class="tag">Foodsy CR</span>
+            <span class="tag">Agentes IA</span>
+            <span class="tag">Automatización</span>
+            <span class="tag">UX/UI Design</span>
+            <span class="tag">WhatsApp API</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section id="proyectos">
+    <div class="container">
+      <div class="projects-header">
+        <div class="projects-header-left">
+          <span class="eyebrow">Portfolio</span>
+          <h2 class="section-title">Proyectos destacados</h2>
+        </div>
+      </div>
+
+      <!-- Featured Project -->
+      <div class="project-featured">
+        <div>
+          <div class="project-badge">
+            <span class="badge-dot"></span>
+            Proyecto principal
+          </div>
+          <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 8px;">
+            <img src="img/foodsy_logo.png" alt="Foodsy logo" class="project-featured-logo">
+            <h3 class="project-title" style="margin-bottom: 0;">Foodsy</h3>
+          </div>
+          <p class="project-desc">
+            Agente de IA por WhatsApp que automatiza reservaciones para restaurantes en Costa Rica. El dueño no toca el teléfono — el agente califica, confirma y gestiona todo el flujo automáticamente.
+          </p>
+          <div class="project-metrics">
+            <div class="project-metric">
+              <span class="pm-num">100%</span>
+              <span class="pm-label">Reservas sin intervención</span>
+            </div>
+            <div class="project-metric">
+              <span class="pm-num">24/7</span>
+              <span class="pm-label">Disponibilidad activa</span>
+            </div>
+            <div class="project-metric">
+              <span class="pm-num">CR</span>
+              <span class="pm-label">Mercado objetivo</span>
+            </div>
+          </div>
+          <div class="tech-stack+cta" style="display: flex; flex-direction: column; gap: 30px;">
+            <div class="tech-stack">
+              <span class="tech-pill">WhatsApp API</span>
+              <span class="tech-pill">IA Conversacional</span>
+              <span class="tech-pill">SaaS</span>
+            </div>
+            <div class="cta">
+              <a href="https://foodsycr.com/" target="_blank" class="btn btn-main">Ver Foodsy <i class="ti ti-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="project-showcase-visual">
+          <div class="showcase-placeholder">
+            <i class="ti ti-screenshot" style="font-size: 32px; color: var(--border-strong); margin-bottom: 10px;"></i>
+            <span style="font-size: 12px; font-weight: 600; color: var(--border-strong); text-transform: uppercase; letter-spacing: 0.1em;">Preview del sistema</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Secondary Projects Grid -->
+      <div class="projects-grid">
+        <div class="project-card">
+          <div>
+            <div class="pc-icon pc-icon-logo"><img src="img/kosta_logo.jpeg" alt="Kosta Asiátika logo" class="pc-logo-img"></div>
+            <h4 class="pc-title">App Kosta Asiátika</h4>
+            <p class="pc-desc">La administradora debía atender mesas y responder WhatsApp al mismo tiempo. Con ManyChat, automaticé la atención: cuando alguien quiere reservar, el flujo lo lleva a una mini-app estilo cine donde elige el día, el horario y hasta la mesa. Al confirmar, recibe un mensaje automático vía API. Resultado: cero interrupciones para el equipo.</p>
+          </div>
+          <div class="tech-stack+cta" style="display: flex; flex-direction: column; gap: 30px;">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span class="pc-tag">ManyChat</span>
+              <span class="pc-tag">WhatsApp API</span>
+              <span class="pc-tag">Automatización</span>
+            </div>
+
+            <div class="cta">
+              <a href="https://kostaasiatika.cloud/" target="_blank" class="btn btn-main">Ver Proyecto<i class="ti ti-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="project-card">
+          <div>
+            <div class="pc-icon pc-icon-logo"><img src="img/EM.png" alt="Evan Marín logo" class="pc-logo-img"></div>
+            <h4 class="pc-title">Diseño Web + Landings</h4>
+            <p class="pc-desc">Antes de cobrar, regalé mi tiempo. Diseñé páginas web para amigos, familiares y negocios cercanos — cada uno fue una oportunidad de aprender a construir con foco en lo que importa: que el visitante tome acción. Sin templates genéricos, todo pensado desde el problema del negocio.</p>
+          </div>
+          <div class="tech-stack+cta" style="display: flex; flex-direction: column; gap: 30px;">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span class="pc-tag">UX/UI</span>
+              <span class="pc-tag">Conversión</span>
+              <span class="pc-tag">HTML/CSS</span>
+            </div>
+
+            <div class="cta">
+              <a href="https://www.instagram.com/em_devstudio/" target="_blank" class="btn btn-main">Ver Proyecto<i class="ti ti-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS SECTION -->
+  <section id="habilidades" class="bg-white">
+    <div class="container">
+
+      <div class="skills-header">
+        <span class="eyebrow">Habilidades</span>
+        <h2 class="section-title">Qué puedo hacer por tu negocio</h2>
+        <p class="skills-subtitle">Combino el lado técnico y el visual para construir soluciones digitales fluidas que generan resultados.</p>
+      </div>
+
+      <div class="skills-categories">
+
+        <div class="skill-category">
+          <div class="skill-category-header">
+            <div class="skill-category-icon"><i class="ti ti-brain"></i></div>
+            <h3 class="skill-category-title">IA &amp; Automatización</h3>
+          </div>
+          <div class="skill-pills-grid">
+            <div class="skill-pill">
+              <i class="ti ti-robot"></i>
+              <span>Agentes de IA</span>
+            </div>
+            <div class="skill-pill">
+              <i class="ti ti-brand-whatsapp"></i>
+              <span>WhatsApp API</span>
+            </div>
+            <div class="skill-pill">
+              <i class="ti ti-plug-connected"></i>
+              <span>Integración de APIs</span>
+            </div>
+            <div class="skill-pill">
+              <i class="ti ti-message-chatbot"></i>
+              <span>ManyChat</span>
+            </div>
+            <div class="skill-pill">
+              <i class="ti ti-prompt"></i>
+              <span>Prompting avanzado</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-category-header">
+            <div class="skill-category-icon"><i class="ti ti-palette"></i></div>
+            <h3 class="skill-category-title">Diseño &amp; Producto</h3>
+          </div>
+          <div class="skill-pills-grid">
+            <div class="skill-pill">
+              <i class="ti ti-device-desktop-analytics"></i>
+              <span>UX/UI Design</span>
+            </div>
+            <div class="skill-pill">
+              <i class="ti ti-brand-figma"></i>
+              <span>Figma</span>
+            </div>
+            <div class="skill-pill">
+              <i class="ti ti-layout-grid"></i>
+              <span>Diseño de SaaS</span>
+            </div>
+            <div class="skill-pill">
+              <i class="ti ti-code"></i>
+              <span>HTML / CSS</span>
+            </div>
+            <div class="skill-pill">
+              <i class="ti ti-trending-up"></i>
+              <span>Conversión web</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / FOOTER -->
+  <section id="contacto" class="contact-section">
+    <div class="container">
+      <div class="contact-container">
+        <span class="eyebrow" style="color: var(--accent-color);">Contacto</span>
+        <h2 class="contact-title">¿Tienes un proyecto en mente?</h2>
+        <p class="contact-sub">
+          Hablemos sobre cómo puedo automatizar tus procesos con Inteligencia Artificial o diseñar la experiencia de tu próximo producto digital.
+        </p>
+        <div class="contact-links">
+          <a href="#" class="contact-link contact-link-primary">
+            <i class="ti ti-message" aria-hidden="true"></i> Implementar IA
+          </a>
+          <a href="#" class="contact-link contact-link-secondary">
+            <i class="ti ti-brand-whatsapp" aria-hidden="true"></i> Foodsy para restaurante
+          </a>
+          <a href="#" class="contact-link contact-link-secondary">
+            <i class="ti ti-brand-instagram" aria-hidden="true"></i> @evan.marin.jimenez
+          </a>
+        </div>
+      </div>
+
+      <footer>
+        <p>&copy; 2026 Evan Marín. Todos los derechos reservados.</p>
+        <p>Costa Rica 🇨🇷</p>
+      </footer>
+    </div>
+  </section>
+
+  <script>
+    // Header shadow on scroll
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Typewriter effect
+    const phrases = ["Automatizo negocios.", "Diseño experiencias.", "Construyo Foodsy."];
+    let pi = 0, ci = 0, deleting = false;
+    const el = document.getElementById('typewriter');
+    
+    function type() {
+      const phrase = phrases[pi];
+      if (!deleting) {
+        el.textContent = phrase.slice(0, ci + 1);
+        ci++;
+        if (ci === phrase.length) { 
+          deleting = true; 
+          setTimeout(type, 2000); 
+          return; 
+        }
+      } else {
+        el.textContent = phrase.slice(0, ci - 1);
+        ci--;
+        if (ci === 0) { 
+          deleting = false; 
+          pi = (pi + 1) % phrases.length; 
+        }
+      }
+      setTimeout(type, deleting ? 40 : 80);
+    }
+    
+    type();
+  </script>
+
+  <!-- FLOATING BUTTONS -->
+  <div class="fab-container">
+    <a href="https://www.instagram.com/evan.marin.jimenez/" target="_blank" class="fab-btn fab-instagram" aria-label="Instagram">
+      <i class="ti ti-brand-instagram"></i>
+    </a>
+    <a href="https://wa.me/+50671139391" target="_blank" class="fab-btn fab-whatsapp" aria-label="WhatsApp">
+      <i class="ti ti-brand-whatsapp"></i>
+    </a>
+  </div>
+
+</body>
+</html>
